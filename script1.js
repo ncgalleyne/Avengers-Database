@@ -2,43 +2,50 @@
 // what's new
 //  - bug fixes 	//when mouseover the name, (and accessing it by arrows), the short bio is displayed in the box up/down should move scrollbar and moveCursor
 //  - new searchbar
+//  - new heroes array
 
-var names = [
-'Hulk','Iron Man','Thor','Captain America','Spider-Man','Black Panther','Doctor Strange','Star-Lord','Gamora','Rocket Raccoon','Groot','Drax','Nebula','Thanos','War Machine','Loki','Winter Soldier','Black Widow','Director Fury',"M'Baku",'Okoye','Jabari Tribe','Dora Milaje','Wong','Maria Hill','Captain Marvel','Heimdall','Collector','Red Skull','Vision','Scarlet Witch','Mantis','Proxima Midnight','Ebony Maw',
-'Shuri','Falcon','Pepper Potts','Eitri','Bus Driver'];
 
-var actors = [
-'Mark Ruffalo','Robert Downey Jr.','Chris Hemsworth','Chris Evans','Tom Holland','Chadwick Boseman','Benedict Cumberbatch','Chris Pratt','Zoe Saldana','Bradley Cooper','Vin Diesel','Dave Bautista','Karen Gillan','Josh Brolin','Don Cheadle','Tom Hiddleston','Sebastian Stan','Scarlett Johansson','Samuel L. Jackson','Winston Duke','Danai Gurira','','','Benedict Wong','Cobie Smulders','Brie Larson','Idris Elba','Benecio Del Toro','Hugo Weaving','Paul Bettany','Elizabeth Olsen','Pom Klementieff','Carrie Coon','Tom Vaughan-Lawlor','Letitia Wright','Anthony Mackie','Gwyneth Paltrow','Peter Dinklage','Stan Lee'];
-
-var alias = ['Bruce Banner','Tony Stark','Thor Odinson','Steve Rogers','Peter Parker',"T'Challa",'Stephen Strange','Peter Jason Quill','','','','','','','James Rhodes','Loki Odinson','Bucky Barnes','Natasha Romanoff','Nick Fury','','','','','','Eye Candy','Carol Danvers','','Taneleer Tivan','Johann Schmidtt','','Wanda Maximoff','','','','','Sam Wilson','Virginia Potts','',''];
-
-var bios = [ //hmm
-"In 2007, the first Hulk movie was released, which technically launched the MCU but is unrecognized. However it is hard not to acknowlegde the Hulk's brute strength and reputation for destruction.","Iron Man's movie in 2008 launched the Marvel Cinematic Universe. He is a core piece of the original Avengers and adds a heartfelt presence over the last decade to numerous fans. It is quite evident to see the impact he has on his peers and the world through his remarkable innovations and inventions.",
-"Our royal heir to the Asgardian throne yet fights to protect Earth? Don't confuse loyalty with loyalty, as this hero rounds out our group of core Avengers. He may truly be the most powerful hero in the universe -- I have to do my research.","Legend has it that the procedure that transformed this scrawny teenage kid from Brooklyn into the honorable Captain reulted in a bullet wound to the kneecap on D-Day. Nonetheless, the serum that was injected into him, granted him the ability to perform at the peak of a human and began the trend of serum bred heroes.",
-"He's just your friendly neighborhood teenage web slinger. This hero probably has the most movies out of the bunch, but most of them reside in seperate universes. Tony Stark was able to persuade him to join the group in the most recent movie in 2017","The royal heir to the Wakandan throne. King T'Challa serves as protector and mighty warrior of Wakanda with super-human abilities absorbed from the indulgence of the heart-shaped erb. One of his primary motives is to become the first king to establish relations with the outside world, and offer the resources neccessary, to make it a better place","Doctor Strange's story is quite unusual. His superpower is his ability to cast powerful spells that include, bending dimensions, defying gravity and most of all, manipulating time. ", "Leader of the Guardians of the Galaxy.","No bio Availible",'No bio Availible',
-'No bio Availible','No bio Availible','No bio Availible',"Arguably the most powerful being in the universee, Thanos is motivated only by righting the wrongs that resulted in his home planet (Titan's) extinction. He first appeared in a post-credit scene after the first Avengers movie. Since then he has been waiting patiently for his opportunity to undertake his master plan and ultimately create complete balance across the universe.","It must be cool to be him. Since he's close friends with Tony Stark, he has his own 'Iron Man' suit. As a colonel, he is very skilled in combat which makes him a very good sidekick. Marvel is good for using foreshadowing but the most memorable was in the first Iron Man movie, where he is in Stark's lab and hints towards suiting up in a protoype suit 'next time baby.'",
-"Step-brother to Thor, and the most used villain in the universe, we have grown to love Loki. As he grew up, he gained the passion to hold the Asgardian throne, but did not obtain birthrights to it. This dissapointment gave us the villain we have today.","He and Cap grew up best friends in Brooklyn, NY. Since he was always bigger than Cap, he looked out for him and kept him out of trouble. He was reportedly killed in action during WW2, but evil scientist, Arnim Zola, found him and revived him. Just like Cap, he is built from a serum that granted him heightened abilities along with his metallic arm.",
-"Natasha Romanoff was introduced by kicking Tony Stark's butt in the boxing ring in his own house! Ever since, shes been terrorizing villains. Not to mention she has no official powers, she's only been upgraded from agent to Avenger.","The man that calls the shots. Nick Fury! It's safe to say it was his idea for all the heroes to stop acting like they dont know each other out here fighting crime and assemble into a team. He formerly worked for S.H.I.E.l.D, but now serves as a vigilant along other loyal agents whose first priority is to fight the battles for those who never could.","He is king of the Jabarri Tribe and one of T'Challa's main villains. In actuality, he is a man-ape, but was portrayed by Winston Duke as a human in the Black Panther movie. His appearance and presence often intimidates his enemy",
-"Leader of the Dora Milaje. Okoye is highly loyal to protecting the Wakandan throne.","One of the 5 tribes that make up Wakanda. Even though they live in isolation from the rest of the country, they lie within Wakanda's borders, therefore making M'Baku eligible to challenge for the throne. At nature, they are reliable and efficient warriors.",'No bio Availible','No bio Availible','No bio Availible','No bio Availible',"Overseer of the Universe... Nah, we'll just refer to him as the 'Gatekeeper'",'No bio Availible',"Our pop culture reference to Adolf Hitler, Red Skull represents a thirstful villain in his search for becoming the most powerful being. He introduced the MCU to infinity stones, in which harness the power to grant beings vast superpowers. (Yeah, them joints ain't no joke)",'No bio Availible',"One of the most powerful Avengers, she is the only one that can defeat Vision. She exists in different universes as a part of the X-Men. In fact, the MCUs only speedster (wait this isn't The Flash) is her brother. ",'No bio Availible',
-'No bio Availible','No bio Availible',"Her super power is intelligence. She has studied the nature of the rare metal known as vibranium and used her research to make great advances in medicine, technology, etc. As sister of T'Challa and next in line to the throne, she makes the latest and most innovative tech, including the Black Panther's suit. Wakanda would not be what it is without her mind.","Ex-military pilot, Falcon, assists Captain America as his eyes in the sky. He has some cool gadgets that make him stand out from other sidekicks. His shades have some sort of x-ray vision capabilities that can scan through surfaces and locate enemies. As far as gadgets go, he has a controllable drone that can target enemies as well."," Pepper used to only be Tony Stark's housemaid, but they caught feelings quickly in the series and now are married. In the third Iron Man movie she was given super abilities by the movie's main villain, but she now seems to be ridden from those. She has the role of pleading to stay out of danger. (Like that's going to happen)","Giant alien who creates Weapons of Mass Destruction. First introduced in Avengers Infinity War.","SPOILER ALERT: In Infinity War, Stan Lee cameos as a bus driver. Judging by the scenery, while Spider-Man was riding the bus home during the 'Alien invasion', Stan Lee is shown driving the school bus across a bridge whilst Spidey sneaks out the window and reports to duty."];
-
-var heroes = [];
-
-function character(name, actor, alias, bio){
-  this.name = name;
-  this.actor = actor;
-  this.alias = alias;
-  this.bio = bio;
-}
-
-for(i = 0; i < names.length; i++){
-  var hero = new character('name', 'actor', 'alias', 'bio');
-  hero.name = names[i];
-  hero.actor = actors[i];
-  hero.alias = alias[i];
-  hero.bio = bios[i];
-  heroes.push(hero);
-}
+var heroes = [
+    {name:'Hulk', actor:'Mark Ruffalo', alias:'Bruce Banner', bio:"In 2007, the first Hulk movie was released, which technically launched the MCU but is unrecognized. However it is hard not to acknowlegde the Hulk's brute strength and reputation for destruction."},
+    {name:'Iron Man', actor:'Robert Downey Jr.', alias:'Tony Stark', bio:"Iron Man's movie in 2008 launched the Marvel Cinematic Universe. He is a core piece of the original Avengers and adds a heartfelt presence over the last decade to numerous fans. It is quite evident to see the impact he has on his peers and the world through his remarkable innovations and inventions."},
+    {name:'Thor', actor:'Chris Hemsworth', alias:'Thor Odinson', bio:"Our royal heir to the Asgardian throne yet fights to protect Earth? Don't confuse loyalty with loyalty, as this hero rounds out our group of core Avengers. He may truly be the most powerful hero in the universe -- I have to do my research."},
+    {name:'Captain America', actor:'Chris Evans', alias:'Steve Rogers', bio:"Legend has it that the procedure that transformed this scrawny teenage kid from Brooklyn into the honorable Captain reulted in a bullet wound to the kneecap on D-Day. Nonetheless, the serum that was injected into him, granted him the ability to perform at the peak of a human and began the trend of serum bred heroes."},
+    {name:'Spider-Man', actor:'Tom Holland', alias:'Peter Parker', bio:"He's just your friendly neighborhood teenage web slinger. This hero probably has the most movies out of the bunch, but most of them reside in seperate universes. Tony Stark was able to persuade him to join the group in the most recent movie in 2017"},
+    {name:'Black Panther', actor:'Chadwick Boseman', alias:"T'Challa", bio:"The royal heir to the Wakandan throne. King T'Challa serves as protector and mighty warrior of Wakanda with super-human abilities absorbed from the indulgence of the heart-shaped erb. One of his primary motives is to become the first king to establish relations with the outside world, and offer the resources neccessary, to make it a better place"},
+    {name:'Doctor Strange', actor:'Benedict Cumberbatch', alias:'Stephen Strange', bio:"Doctor Strange's story is quite unusual. His superpower is his ability to cast powerful spells that include, bending dimensions, defying gravity and most of all, manipulating time."},
+    {name:'Star-Lord', actor:'Chris Pratt', alias:'Peter Jason Quill', bio:"Leader of the Guardians of the Galaxy."},
+    {name:'Gamora', actor:'Zoe Saldana', alias:'', bio:"No bio Available"},
+    {name:'Rocket Raccoon', actor:'Bradley Cooper', alias:'', bio:"No bio Available"},
+    {name:'Groot', actor:'Vin Diesel', alias:'', bio:"No bio Available"},
+    {name:'Drax', actor:'Dave Bautista', alias:'', bio:"No bio Available"},
+    {name:'Nebula', actor:'Karen Gillan', alias:'', bio:"No bio Available"},
+    {name:'Thanos', actor:'Josh Brolin', alias:'', bio:"Arguably the most powerful being in the universee, Thanos is motivated only by righting the wrongs that resulted in his home planet (Titan's) extinction. He first appeared in a post-credit scene after the first Avengers movie. Since then he has been waiting patiently for his opportunity to undertake his master plan and ultimately create complete balance across the universe."},
+    {name:'War Machine', actor:'Don Cheadle', alias:'James Rhodes', bio:"It must be cool to be him. Since he's close friends with Tony Stark, he has his own 'Iron Man' suit. As a colonel, he is very skilled in combat which makes him a very good sidekick. Marvel is good for using foreshadowing but the most memorable was in the first Iron Man movie, where he is in Stark's lab and hints towards suiting up in a protoype suit 'next time baby.'"},
+    {name:'Loki', actor:'Tom Hiddleston', alias:'Loki Odinson', bio:"Step-brother to Thor, and the most used villain in the universe, we have grown to love Loki. As he grew up, he gained the passion to hold the Asgardian throne, but did not obtain birthrights to it. This dissapointment gave us the villain we have today."},
+    {name:'Winter Soldier', actor:'Sebastian Stan', alias:'Bucky Barnes', bio:"He and Cap grew up best friends in Brooklyn, NY. Since he was always bigger than Cap, he looked out for him and kept him out of trouble. He was reportedly killed in action during WW2, but evil scientist, Arnim Zola, found him and revived him. Just like Cap, he is built from a serum that granted him heightened abilities along with his metallic arm."},
+    {name:'Black Widow', actor:'Scarlett Johansson', alias:'Natasha Romanoff', bio:"Natasha Romanoff was introduced by kicking Tony Stark's butt in the boxing ring in his own house! Ever since, shes been terrorizing villains. Not to mention she has no official powers, she's only been upgraded from agent to Avenger."},
+    {name:'Director Fury', actor:'Samuel L. Jackson', alias:'Nick Fury', bio:"The man that calls the shots. Nick Fury! It's safe to say it was his idea for all the heroes to stop acting like they dont know each other out here fighting crime and assemble into a team. He formerly worked for S.H.I.E.l.D, but now serves as a vigilant along other loyal agents whose first priority is to fight the battles for those who never could."},
+    {name:"M'Baku", actor:'Winston Duke', alias:'', bio:"He is king of the Jabarri Tribe and one of T'Challa's main villains. In actuality, he is a man-ape, but was portrayed by Winston Duke as a human in the Black Panther movie. His appearance and presence often intimidates his enemy"},
+    {name:'Okoye', actor:'Danai Gurira', alias:'', bio:"Leader of the Dora Milaje. Okoye is highly loyal to protecting the Wakandan throne."},
+    {name:'Jabari Tribe', actor:'', alias:'', bio:"One of the 5 tribes that make up Wakanda. Even though they live in isolation from the rest of the country, they lie within Wakanda's borders, therefore making M'Baku eligible to challenge for the throne. At nature, they are reliable and efficient warriors."},
+    {name:'Dora Milaje', actor:'', alias:'', bio:"No bio Available"},
+    {name:'Wong', actor:'Benedict Wong', alias:'', bio:"No bio Available"},
+    {name:'Eye Candy', actor:'Cobie Smulders', alias:'Maria Hill', bio:"No bio Available"},
+    {name:'Captain Marvel', actor:'Brie Larson', alias:'Carol Danvers', bio:"No bio Available"},
+    {name:'Heimdall', actor:'Idris Elba', alias:'', bio:"Overseer of the Universe... Nah, we'll just refer to him as the 'Gatekeeper'"},
+    {name:'Collector', actor:'Benecio Del Toro', alias:'Taneleer Tivan', bio:"No bio Available"},
+    {name:'Red Skull', actor:'Hugo Weaving', alias:'Johann Schmidtt', bio:"Our pop culture reference to Adolf Hitler, Red Skull represents a thirstful villain in his search for becoming the most powerful being. He introduced the MCU to infinity stones, in which harness the power to grant beings vast superpowers. (Yeah, them joints ain't no joke)"},
+    {name:'Vision', actor:'Paul Bettany', alias:'', bio:"No bio Available"},
+    {name:'Scarlet Witch', actor:'Elizabeth Olsen', alias:'Wanda Maximoff', bio:"One of the most powerful Avengers, she is the only one that can defeat Vision. She exists in different universes as a part of the X-Men. In fact, the MCUs only speedster (wait this isn't The Flash) is her brother."},
+    {name:'Mantis', actor:'Pom Klementieff', alias:'', bio:"No bio Available"},
+    {name:'Proxima Midnight', actor:'Carrie Coon', alias:'', bio:"No bio Available"},
+    {name:'Ebony Maw', actor:'Tom Vaughan-Lawlor', alias:'', bio:"No bio Available"},
+    {name:'Shuri', actor:'Letitia Wright', alias:'', bio:"Her super power is intelligence. She has studied the nature of the rare metal known as vibranium and used her research to make great advances in medicine, technology, etc. As sister of T'Challa and next in line to the throne, she makes the latest and most innovative tech, including the Black Panther's suit. Wakanda would not be what it is without her mind."},
+    {name:'Falcon', actor:'Anthony Mackie', alias:'Sam Wilson', bio:"Ex-military pilot, Falcon, assists Captain America as his eyes in the sky. He has some cool gadgets that make him stand out from other sidekicks. His shades have some sort of x-ray vision capabilities that can scan through surfaces and locate enemies. As far as gadgets go, he has a controllable drone that can target enemies as well."},
+    {name:'Pepper Potts', actor:'Gwyneth Paltrow', alias:'Virginia Potts', bio:"Pepper used to only be Tony Stark's housemaid, but they caught feelings quickly in the series and now are married. In the third Iron Man movie she was given super abilities by the movie's main villain, but she now seems to be ridden from those. She has the role of pleading to stay out of danger. 'Like that's going to happen'"},
+    {name:'Eitri', actor:'Peter Dinklage', alias:'', bio:"Giant alien who creates Weapons of Mass Destruction. First introduced in Avengers Infinity War."},
+    {name:'Bus Driver', actor:'Stan Lee', alias:'', bio:"SPOILER ALERT: In Infinity War, Stan Lee cameos as a bus driver. Judging by the scenery, while Spider-Man was riding the bus home during the 'Alien invasion', Stan Lee is shown driving the school bus across a bridge whilst Spidey sneaks out the window and reports to duty."}
+];
 
 var body = document.querySelector('body');
 var input = document.querySelector('input');
@@ -78,7 +85,7 @@ window.onload = function(){
 };
 
 function changeUrl(){
-  for(i = 0; i < names.length; i++){
+  for(i = 0; i < heroes.length; i++){
 	  if(input.value.toUpperCase() === heroes[i].name.toUpperCase() || input.value.toUpperCase() === heroes[i].actor.toUpperCase() || input.value.toUpperCase() === heroes[i].alias.toUpperCase()){
       var urlName = heroes[i].name;
       urlName = parseName(urlName);
