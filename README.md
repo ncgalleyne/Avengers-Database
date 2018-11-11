@@ -9,5 +9,6 @@ This website is for all of you who've seen or want to see Avengers Infinity War,
 
 
 How to Use:
+-
 Use the searchbar to search for a hero's name, alias or actor.
 Click on desired hero's name in dropdown list
